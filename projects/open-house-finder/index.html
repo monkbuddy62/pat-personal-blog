@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building an open house scraper — Pat McCaffrey</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<p class="site-title"><a href="/">Pat McCaffrey</a></p>
+<nav>
+  <a href="/">home</a> /
+  <a href="/projects/">projects</a> /
+  <a href="/music/">music</a> /
+  <a href="/thoughts/">thoughts</a> /
+  <a href="/archive/">archive</a> /
+  <a href="/about/">about</a> /
+  <a href="/blogroll/">blogroll</a>
+</nav>
+
+<hr>
+
+<h2>Building an open house scraper</h2>
+<p class="post-meta">April 2026 &mdash; <a href="/projects/">projects</a></p>
+
+<p>
+  I go to a lot of open houses. Not because I'm buying — I work in real estate adjacent stuff and it's useful to meet agents in person. You show up, walk around, grab their card, have a two minute conversation. Do that enough Saturdays and you start to know people.
+</p>
+
+<p>
+  The problem is figuring out which open houses are happening and where. Redfin has the data but you have to dig for it. So I built a scraper.
+</p>
+
+<p>
+  It's a Python script using Playwright — a browser automation library that drives a real Chromium instance so the site doesn't block you like it would a raw HTTP request. You give it a Redfin neighborhood URL and it scrolls through all the listings, grabs each one, pulls the address, agent name, and open house time, and dumps everything into a SQLite database.
+</p>
+
+<p>
+  The anti-detection stuff was the most interesting part. Redfin is pretty aggressive about blocking scrapers. Random delays between requests, human-style scrolling, spoofing browser properties that automation frameworks expose. It works well enough for personal use at low volume.
+</p>
+
+<p>
+  I also built a small web UI on top of it — Flask backend, Leaflet map, route optimizer. You paste in the neighborhood URL, hit run, and it populates a map with all the open houses. You X out the ones you don't want, enter your home address, and it plans an optimized route and gives you a Google Maps link. Pretty useful on a Saturday morning.
+</p>
+
+<p>
+  The code is on <a href="https://github.com/monkbuddy62/openhouse-finder">GitHub</a> if you want it.
+</p>
+
+<hr>
+
+<footer>
+  <a href="/projects/">← projects</a>
+</footer>
+
+</body>
+</html>
