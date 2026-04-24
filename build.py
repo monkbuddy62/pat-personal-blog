@@ -75,7 +75,7 @@ def render_page(title, inner, back_href, back_label):
 </head>
 <body>
 
-<p class="site-title"><a href="/">Pat McCaffrey</a></p>
+<p class="site-title"><a href="">Pat McCaffrey</a></p>
 <nav>
 {NAV}
 </nav>
@@ -103,7 +103,7 @@ def build_post(md_path, section, slug):
     html_body = markdown.markdown(body, extensions=['fenced_code'])
 
     inner = f"""<h2>{title}</h2>
-<p class="post-meta">{date} &mdash; <a href="/{section}/">{section}</a></p>
+<p class="post-meta">{date} &mdash; <a href="{section}/">{section}</a></p>
 
 {html_body}"""
 
@@ -112,7 +112,7 @@ def build_post(md_path, section, slug):
     out_path = os.path.join(out_dir, 'index.html')
 
     with open(out_path, 'w', encoding='utf-8') as f:
-        f.write(render_page(title, inner, f'/{section}/', section))
+        f.write(render_page(title, inner, f'{section}/', section))
 
     print(f"  wrote {out_path}")
     return {'title': title, 'date': date, 'section': section, 'slug': slug}
@@ -140,7 +140,7 @@ def write_section_index(section, posts):
     intro = SECTION_INTROS.get(section, '')
     items = '\n'.join(
         f'  <li><span class="post-date">{p["date"]}</span> &mdash; '
-        f'<a href="/{section}/{p["slug"]}/">{p["title"]}</a></li>'
+        f'<a href="{section}/{p["slug"]}/">{p["title"]}</a></li>'
         for p in reversed(posts)
     )
     inner = f"""<h2>{section.title()}</h2>
@@ -150,7 +150,7 @@ def write_section_index(section, posts):
 <ul class="post-list">
 {items}
 </ul>"""
-    page = render_page(section.title(), inner, '/', 'home')
+    page = render_page(section.title(), inner, '', 'home')
     path = os.path.join(section, 'index.html')
     with open(path, 'w', encoding='utf-8') as f:
         f.write(page)
@@ -167,14 +167,14 @@ def write_archive(all_posts):
     for year in sorted(by_year.keys(), reverse=True):
         items = '\n'.join(
             f'  <li><span class="post-date">{p["date"]}</span> &mdash; '
-            f'<a href="/{p["section"]}/{p["slug"]}/">{p["title"]}</a> '
+            f'<a href="{p["section"]}/{p["slug"]}/">{p["title"]}</a> '
             f'<small>({p["section"]})</small></li>'
             for p in reversed(by_year[year])
         )
         blocks.append(f'<h3>{year}</h3>\n\n<ul class="post-list">\n{items}\n</ul>')
 
     inner = '<h2>Archive</h2>\n\n' + '\n\n'.join(blocks)
-    page  = render_page('Archive', inner, '/', 'home')
+    page  = render_page('Archive', inner, '', 'home')
     with open('archive/index.html', 'w', encoding='utf-8') as f:
         f.write(page)
     print("  updated archive/index.html")
@@ -184,7 +184,7 @@ def write_home(all_posts):
     recent = list(reversed(all_posts))[:10]
     items  = '\n'.join(
         f'  <li><span class="post-date">{p["date"]}</span> &mdash; '
-        f'<a href="/{p["section"]}/{p["slug"]}/">{p["title"]}</a> '
+        f'<a href="{p["section"]}/{p["slug"]}/">{p["title"]}</a> '
         f'<small>({p["section"]})</small></li>'
         for p in recent
     )
@@ -218,9 +218,9 @@ def write_home(all_posts):
 <hr>
 
 <footer>
-  <a href="/about/">about</a> &nbsp;&middot;&nbsp;
-  <a href="/blogroll/">blogroll</a> &nbsp;&middot;&nbsp;
-  <a href="/archive/">archive</a>
+  <a href="about/">about</a> &nbsp;&middot;&nbsp;
+  <a href="blogroll/">blogroll</a> &nbsp;&middot;&nbsp;
+  <a href="archive/">archive</a>
 </footer>
 
 </body>
