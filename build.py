@@ -28,14 +28,15 @@ except ImportError:
 
 SECTIONS   = ['projects', 'music', 'thoughts']
 POSTS_DIR  = 'posts'
+BASE_HREF  = '/pat-personal-blog/'   # change to '/' when on custom domain
 NAV        = """\
-  <a href="/">home</a> /
-  <a href="/projects/">projects</a> /
-  <a href="/music/">music</a> /
-  <a href="/thoughts/">thoughts</a> /
-  <a href="/archive/">archive</a> /
-  <a href="/about/">about</a> /
-  <a href="/blogroll/">blogroll</a>"""
+  <a href="">home</a> /
+  <a href="projects/">projects</a> /
+  <a href="music/">music</a> /
+  <a href="thoughts/">thoughts</a> /
+  <a href="archive/">archive</a> /
+  <a href="about/">about</a> /
+  <a href="blogroll/">blogroll</a>"""
 
 SECTION_INTROS = {
     'projects': 'Hardware, software, things I\'ve built or am building.',
@@ -67,8 +68,9 @@ def render_page(title, inner, back_href, back_label):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{BASE_HREF}">  <!-- change BASE_HREF above when switching to custom domain -->
   <title>{title} — Pat McCaffrey</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
