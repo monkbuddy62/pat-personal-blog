@@ -1,6 +1,6 @@
 ---
 title: How did I not know about github pages
-date: April 24
+date: April 2026
 ---
 
 
