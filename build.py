@@ -194,12 +194,13 @@ def write_home(all_posts):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{BASE_HREF}">
   <title>Pat McCaffrey</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<p class="site-title"><a href="/">Pat McCaffrey</a></p>
+<p class="site-title"><a href="">Pat McCaffrey</a></p>
 <nav>
 {NAV}
 </nav>
