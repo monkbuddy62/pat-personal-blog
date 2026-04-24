@@ -18,6 +18,7 @@ Add a new post:
 
 import os
 import re
+import shutil
 from datetime import datetime
 
 try:
@@ -229,6 +230,21 @@ def write_home(all_posts):
     print("  updated index.html")
 
 
+def cleanup_deleted_posts(all_posts):
+    """Remove output HTML folders for posts that no longer have a source .md file."""
+    built = {(p['section'], p['slug']) for p in all_posts}
+    for section in SECTIONS:
+        if not os.path.isdir(section):
+            continue
+        for slug in os.listdir(section):
+            out_dir = os.path.join(section, slug)
+            if not os.path.isdir(out_dir):
+                continue
+            if (section, slug) not in built:
+                shutil.rmtree(out_dir)
+                print(f"  removed {out_dir}")
+
+
 if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -242,5 +258,8 @@ if __name__ == '__main__':
 
     write_archive(all_posts)
     write_home(all_posts)
+
+    print("\nCleaning up deleted posts...")
+    cleanup_deleted_posts(all_posts)
 
     print(f"\nDone. {len(all_posts)} posts built.")
