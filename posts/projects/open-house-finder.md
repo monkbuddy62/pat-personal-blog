@@ -9,8 +9,7 @@ The problem is figuring out which open houses are happening and where. Redfin ha
 
 It's a Python script using Playwright — a browser automation library that drives a real Chromium instance so the site doesn't block you like it would a raw HTTP request. You give it a Redfin neighborhood URL and it scrolls through all the listings, grabs each one, pulls the address, agent name, and open house time, and dumps everything into a SQLite database.
 
-The anti-detection stuff was the most interesting part. Redfin is pretty aggressive about blocking scrapers. Random delays between requests, human-style scrolling, spoofing browser properties that automation frameworks expose. It works well enough for personal use at low volume.
-
-I also built a small web UI on top of it — Flask backend, Leaflet map, route optimizer. You paste in the neighborhood URL, hit run, and it populates a map with all the open houses. You X out the ones you don't want, enter your home address, and it plans an optimized route and gives you a Google Maps link. Pretty useful on a Saturday morning.
-
-The code is on [GitHub](https://github.com/monkbuddy62/openhouse-finder) if you want it.
+The anti-detection stuff was the most interesting part. Redfin is pretty aggressive about blocking scrapers. Random delays between requests, human-style scrolling, spoofing browser properties that automation frameworks expose. It works well enough for perstest test aosnajsdhojashdojhasd
+aosjdoajshdo
+asjdhoajshdojashdojahsodjahsodjhoasd
+aosjdhaojsdh
